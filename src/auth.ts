@@ -1,10 +1,8 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import connectDb from "./lib/db";
-import z from "zod";
-import { NextResponse } from "next/server";
+import {z} from "zod";
 import User from "./app/model/user.model";
-// import bcrypt from "bcryptjs";
 import bcrypt from "bcryptjs";
 import Google from "next-auth/providers/google";
 
@@ -53,8 +51,8 @@ export const {handlers, signIn, signOut, auth} = NextAuth({
             }
         }),
         Google({
-            clientId: process.env.AUTH_GOOGLE_ID,
-            clientSecret: process.env.AUTH_GOOGLE_SECRET
+            clientId: process.env.AUTH_GOOGLE_ID!,
+            clientSecret: process.env.AUTH_GOOGLE_SECRET!
         })
     ],
     session:{
@@ -104,5 +102,6 @@ export const {handlers, signIn, signOut, auth} = NextAuth({
             return session
         }
     },
-    secret: process.env.NEXT_AUTH_SECRET
+    secret: process.env.NEXT_AUTH_SECRET!
+
 })

@@ -1,8 +1,8 @@
 import Product from "@/app/model/product.model";
 import connectDb from "@/lib/db";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextResponse) {
+export async function GET(req: NextRequest) {
   try {
     await connectDb();
     const { searchParams } = new URL(req.url);
